@@ -1,0 +1,338 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GIDS-FLOW Audio Demo</title>
+  <meta name="description" content="Audio demo for GIDS-FLOW with separated vocals, accompaniment, and noise examples.">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230f172a'/%3E%3Cpath d='M14 42 C22 18 42 18 50 42' fill='none' stroke='%235eead4' stroke-width='6' stroke-linecap='round'/%3E%3Ccircle cx='32' cy='32' r='7' fill='%23f8fafc'/%3E%3C/svg%3E">
+  <style>
+    :root {
+      color-scheme: light;
+      --bg: #f5f7f8;
+      --panel: #ffffff;
+      --text: #172026;
+      --muted: #64717b;
+      --line: #dbe2e6;
+      --accent: #0f766e;
+      --accent-soft: #e8f6f4;
+      --highlight: #effaf7;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.5;
+    }
+    header {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 36px 24px 20px;
+    }
+    h1 {
+      margin: 0 0 8px;
+      font-size: 32px;
+      letter-spacing: 0;
+    }
+    h2 {
+      margin: 0;
+      font-size: 22px;
+      letter-spacing: 0;
+    }
+    h3 {
+      margin: 22px 0 10px;
+      font-size: 16px;
+    }
+    p {
+      margin: 0;
+      color: var(--muted);
+    }
+    nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    nav a, .anchor {
+      color: var(--accent);
+      text-decoration: none;
+      border: 1px solid var(--line);
+      background: var(--panel);
+      border-radius: 6px;
+      padding: 5px 9px;
+      font-size: 14px;
+    }
+    main {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 24px 40px;
+    }
+    .clip {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 20px;
+      margin: 18px 0;
+      box-shadow: 0 8px 24px rgba(30, 45, 55, 0.05);
+    }
+    .clip-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: start;
+    }
+    .mix-row {
+      display: grid;
+      grid-template-columns: 210px minmax(260px, 1fr);
+      gap: 12px;
+      align-items: center;
+      border-top: 1px solid var(--line);
+      border-bottom: 1px solid var(--line);
+      padding: 14px 0;
+      margin-top: 16px;
+    }
+    .table-wrap {
+      overflow-x: auto;
+    }
+    table {
+      width: 100%;
+      min-width: 940px;
+      border-collapse: collapse;
+      table-layout: fixed;
+      margin-top: 8px;
+    }
+    th, td {
+      border-top: 1px solid var(--line);
+      padding: 10px 8px;
+      vertical-align: middle;
+      text-align: left;
+    }
+    th:first-child {
+      width: 24%;
+      font-weight: 650;
+    }
+    tbody tr.proposed {
+      background: var(--highlight);
+    }
+    tbody tr.proposed th:first-child {
+      color: #0f5f57;
+    }
+    tbody tr:hover {
+      background: var(--accent-soft);
+    }
+    audio {
+      width: 100%;
+      min-width: 170px;
+      height: 34px;
+    }
+    @media (max-width: 820px) {
+      header, main { padding-left: 14px; padding-right: 14px; }
+      .clip { padding: 14px; }
+      .mix-row { grid-template-columns: 1fr; }
+      .table-wrap { overflow: visible; }
+      table, thead, tbody, tr, th, td { display: block; min-width: 0; }
+      thead { display: none; }
+      tr { border-top: 1px solid var(--line); padding: 8px 0; }
+      th, td { border: 0; padding: 5px 0; }
+      th:first-child { width: auto; }
+      td::before {
+        display: block;
+        color: var(--muted);
+        font-size: 12px;
+      }
+      td:nth-child(2)::before { content: "Vocals"; }
+      td:nth-child(3)::before { content: "Accompaniment"; }
+      td:nth-child(4)::before { content: "Noise"; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>GIDS-FLOW Audio Demo</h1>
+    <p>Compare separated vocals, accompaniment, and noise estimates from GIDS-FLOW and baseline systems.</p>
+    <nav>
+      <a href="#clip_01">Excerpt 1</a>
+      <a href="#clip_02">Excerpt 2</a>
+      <a href="#clip_03">Excerpt 3</a>
+      <a href="#clip_04">Excerpt 4</a>
+      <a href="#clip_05">Excerpt 5</a>
+      <a href="#clip_06">Excerpt 6</a>
+      <a href="#clip_07">Excerpt 7</a>
+    </nav>
+  </header>
+  <main>
+    
+      <section class="clip" id="clip_01">
+        <div class="clip-header">
+          <div>
+            <h2>Excerpt 1</h2>
+            <p>Separated estimates for vocals, accompaniment, and noise.</p>
+          </div>
+          <a class="anchor" href="#clip_01" aria-label="Link to this excerpt">#</a>
+        </div>
+
+        <div class="mix-row">
+          <strong>Original mixture</strong>
+          <audio controls preload="none" src="audio/clip_01/mixture.mp3"></audio>
+        </div>
+
+        <h3>Model outputs</h3>
+        <div class="table-wrap"><table>
+          <thead>
+            <tr><th>Model</th><th>Vocals</th><th>Accompaniment</th><th>Noise</th></tr>
+          </thead>
+          <tbody>
+            <tr class="proposed"><th>GIDS-FLOW</th><td><audio controls preload="none" src="audio/clip_01/GIDS-FLOW/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/GIDS-FLOW/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/GIDS-FLOW/noise.mp3"></audio></td></tr><tr><th>DTTNet</th><td><audio controls preload="none" src="audio/clip_01/DTTNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/DTTNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/DTTNet/noise.mp3"></audio></td></tr><tr><th>DTTNet, streaming</th><td><audio controls preload="none" src="audio/clip_01/DTTNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/DTTNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/DTTNet_streaming/noise.mp3"></audio></td></tr><tr><th>SCNet</th><td><audio controls preload="none" src="audio/clip_01/SCNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/SCNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/SCNet/noise.mp3"></audio></td></tr><tr><th>SCNet, streaming</th><td><audio controls preload="none" src="audio/clip_01/SCNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/SCNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/SCNet_streaming/noise.mp3"></audio></td></tr><tr><th>TFC-TDF-UNet v3</th><td><audio controls preload="none" src="audio/clip_01/TFC-TDF-UNet_v3/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/TFC-TDF-UNet_v3/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/TFC-TDF-UNet_v3/noise.mp3"></audio></td></tr><tr><th>Causal TFC-TDF-UNet v3, streaming</th><td><audio controls preload="none" src="audio/clip_01/Causal_TFC-TDF-UNet_v3_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/Causal_TFC-TDF-UNet_v3_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/Causal_TFC-TDF-UNet_v3_streaming/noise.mp3"></audio></td></tr><tr><th>HT Demucs</th><td><audio controls preload="none" src="audio/clip_01/HT_Demucs/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/HT_Demucs/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/HT_Demucs/noise.mp3"></audio></td></tr><tr><th>HT Demucs, streaming</th><td><audio controls preload="none" src="audio/clip_01/HT_Demucs_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/HT_Demucs_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/HT_Demucs_streaming/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN</th><td><audio controls preload="none" src="audio/clip_01/BandIt-BSRNN/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BandIt-BSRNN/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BandIt-BSRNN/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN, streaming</th><td><audio controls preload="none" src="audio/clip_01/BandIt-BSRNN_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BandIt-BSRNN_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BandIt-BSRNN_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact</th><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Compact/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Compact/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Compact/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact, streaming</th><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Compact_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Compact_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Compact_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small</th><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Small/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Small/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Small/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small, streaming</th><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Small_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Small_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Small_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny</th><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Tiny/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Tiny/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Tiny/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny, streaming</th><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Tiny_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Tiny_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_01/BS-RoFormer_Tiny_streaming/noise.mp3"></audio></td></tr>
+          </tbody>
+        </table></div>
+      </section>
+      <section class="clip" id="clip_02">
+        <div class="clip-header">
+          <div>
+            <h2>Excerpt 2</h2>
+            <p>Separated estimates for vocals, accompaniment, and noise.</p>
+          </div>
+          <a class="anchor" href="#clip_02" aria-label="Link to this excerpt">#</a>
+        </div>
+
+        <div class="mix-row">
+          <strong>Original mixture</strong>
+          <audio controls preload="none" src="audio/clip_02/mixture.mp3"></audio>
+        </div>
+
+        <h3>Model outputs</h3>
+        <div class="table-wrap"><table>
+          <thead>
+            <tr><th>Model</th><th>Vocals</th><th>Accompaniment</th><th>Noise</th></tr>
+          </thead>
+          <tbody>
+            <tr class="proposed"><th>GIDS-FLOW</th><td><audio controls preload="none" src="audio/clip_02/GIDS-FLOW/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/GIDS-FLOW/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/GIDS-FLOW/noise.mp3"></audio></td></tr><tr><th>DTTNet</th><td><audio controls preload="none" src="audio/clip_02/DTTNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/DTTNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/DTTNet/noise.mp3"></audio></td></tr><tr><th>DTTNet, streaming</th><td><audio controls preload="none" src="audio/clip_02/DTTNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/DTTNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/DTTNet_streaming/noise.mp3"></audio></td></tr><tr><th>SCNet</th><td><audio controls preload="none" src="audio/clip_02/SCNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/SCNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/SCNet/noise.mp3"></audio></td></tr><tr><th>SCNet, streaming</th><td><audio controls preload="none" src="audio/clip_02/SCNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/SCNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/SCNet_streaming/noise.mp3"></audio></td></tr><tr><th>TFC-TDF-UNet v3</th><td><audio controls preload="none" src="audio/clip_02/TFC-TDF-UNet_v3/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/TFC-TDF-UNet_v3/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/TFC-TDF-UNet_v3/noise.mp3"></audio></td></tr><tr><th>Causal TFC-TDF-UNet v3, streaming</th><td><audio controls preload="none" src="audio/clip_02/Causal_TFC-TDF-UNet_v3_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/Causal_TFC-TDF-UNet_v3_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/Causal_TFC-TDF-UNet_v3_streaming/noise.mp3"></audio></td></tr><tr><th>HT Demucs</th><td><audio controls preload="none" src="audio/clip_02/HT_Demucs/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/HT_Demucs/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/HT_Demucs/noise.mp3"></audio></td></tr><tr><th>HT Demucs, streaming</th><td><audio controls preload="none" src="audio/clip_02/HT_Demucs_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/HT_Demucs_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/HT_Demucs_streaming/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN</th><td><audio controls preload="none" src="audio/clip_02/BandIt-BSRNN/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BandIt-BSRNN/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BandIt-BSRNN/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN, streaming</th><td><audio controls preload="none" src="audio/clip_02/BandIt-BSRNN_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BandIt-BSRNN_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BandIt-BSRNN_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact</th><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Compact/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Compact/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Compact/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact, streaming</th><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Compact_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Compact_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Compact_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small</th><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Small/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Small/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Small/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small, streaming</th><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Small_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Small_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Small_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny</th><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Tiny/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Tiny/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Tiny/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny, streaming</th><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Tiny_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Tiny_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_02/BS-RoFormer_Tiny_streaming/noise.mp3"></audio></td></tr>
+          </tbody>
+        </table></div>
+      </section>
+      <section class="clip" id="clip_03">
+        <div class="clip-header">
+          <div>
+            <h2>Excerpt 3</h2>
+            <p>Separated estimates for vocals, accompaniment, and noise.</p>
+          </div>
+          <a class="anchor" href="#clip_03" aria-label="Link to this excerpt">#</a>
+        </div>
+
+        <div class="mix-row">
+          <strong>Original mixture</strong>
+          <audio controls preload="none" src="audio/clip_03/mixture.mp3"></audio>
+        </div>
+
+        <h3>Model outputs</h3>
+        <div class="table-wrap"><table>
+          <thead>
+            <tr><th>Model</th><th>Vocals</th><th>Accompaniment</th><th>Noise</th></tr>
+          </thead>
+          <tbody>
+            <tr class="proposed"><th>GIDS-FLOW</th><td><audio controls preload="none" src="audio/clip_03/GIDS-FLOW/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/GIDS-FLOW/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/GIDS-FLOW/noise.mp3"></audio></td></tr><tr><th>DTTNet</th><td><audio controls preload="none" src="audio/clip_03/DTTNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/DTTNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/DTTNet/noise.mp3"></audio></td></tr><tr><th>DTTNet, streaming</th><td><audio controls preload="none" src="audio/clip_03/DTTNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/DTTNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/DTTNet_streaming/noise.mp3"></audio></td></tr><tr><th>SCNet</th><td><audio controls preload="none" src="audio/clip_03/SCNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/SCNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/SCNet/noise.mp3"></audio></td></tr><tr><th>SCNet, streaming</th><td><audio controls preload="none" src="audio/clip_03/SCNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/SCNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/SCNet_streaming/noise.mp3"></audio></td></tr><tr><th>TFC-TDF-UNet v3</th><td><audio controls preload="none" src="audio/clip_03/TFC-TDF-UNet_v3/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/TFC-TDF-UNet_v3/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/TFC-TDF-UNet_v3/noise.mp3"></audio></td></tr><tr><th>Causal TFC-TDF-UNet v3, streaming</th><td><audio controls preload="none" src="audio/clip_03/Causal_TFC-TDF-UNet_v3_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/Causal_TFC-TDF-UNet_v3_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/Causal_TFC-TDF-UNet_v3_streaming/noise.mp3"></audio></td></tr><tr><th>HT Demucs</th><td><audio controls preload="none" src="audio/clip_03/HT_Demucs/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/HT_Demucs/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/HT_Demucs/noise.mp3"></audio></td></tr><tr><th>HT Demucs, streaming</th><td><audio controls preload="none" src="audio/clip_03/HT_Demucs_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/HT_Demucs_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/HT_Demucs_streaming/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN</th><td><audio controls preload="none" src="audio/clip_03/BandIt-BSRNN/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BandIt-BSRNN/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BandIt-BSRNN/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN, streaming</th><td><audio controls preload="none" src="audio/clip_03/BandIt-BSRNN_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BandIt-BSRNN_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BandIt-BSRNN_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact</th><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Compact/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Compact/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Compact/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact, streaming</th><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Compact_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Compact_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Compact_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small</th><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Small/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Small/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Small/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small, streaming</th><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Small_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Small_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Small_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny</th><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Tiny/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Tiny/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Tiny/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny, streaming</th><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Tiny_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Tiny_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_03/BS-RoFormer_Tiny_streaming/noise.mp3"></audio></td></tr>
+          </tbody>
+        </table></div>
+      </section>
+      <section class="clip" id="clip_04">
+        <div class="clip-header">
+          <div>
+            <h2>Excerpt 4</h2>
+            <p>Separated estimates for vocals, accompaniment, and noise.</p>
+          </div>
+          <a class="anchor" href="#clip_04" aria-label="Link to this excerpt">#</a>
+        </div>
+
+        <div class="mix-row">
+          <strong>Original mixture</strong>
+          <audio controls preload="none" src="audio/clip_04/mixture.mp3"></audio>
+        </div>
+
+        <h3>Model outputs</h3>
+        <div class="table-wrap"><table>
+          <thead>
+            <tr><th>Model</th><th>Vocals</th><th>Accompaniment</th><th>Noise</th></tr>
+          </thead>
+          <tbody>
+            <tr class="proposed"><th>GIDS-FLOW</th><td><audio controls preload="none" src="audio/clip_04/GIDS-FLOW/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/GIDS-FLOW/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/GIDS-FLOW/noise.mp3"></audio></td></tr><tr><th>DTTNet</th><td><audio controls preload="none" src="audio/clip_04/DTTNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/DTTNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/DTTNet/noise.mp3"></audio></td></tr><tr><th>DTTNet, streaming</th><td><audio controls preload="none" src="audio/clip_04/DTTNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/DTTNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/DTTNet_streaming/noise.mp3"></audio></td></tr><tr><th>SCNet</th><td><audio controls preload="none" src="audio/clip_04/SCNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/SCNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/SCNet/noise.mp3"></audio></td></tr><tr><th>SCNet, streaming</th><td><audio controls preload="none" src="audio/clip_04/SCNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/SCNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/SCNet_streaming/noise.mp3"></audio></td></tr><tr><th>TFC-TDF-UNet v3</th><td><audio controls preload="none" src="audio/clip_04/TFC-TDF-UNet_v3/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/TFC-TDF-UNet_v3/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/TFC-TDF-UNet_v3/noise.mp3"></audio></td></tr><tr><th>Causal TFC-TDF-UNet v3, streaming</th><td><audio controls preload="none" src="audio/clip_04/Causal_TFC-TDF-UNet_v3_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/Causal_TFC-TDF-UNet_v3_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/Causal_TFC-TDF-UNet_v3_streaming/noise.mp3"></audio></td></tr><tr><th>HT Demucs</th><td><audio controls preload="none" src="audio/clip_04/HT_Demucs/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/HT_Demucs/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/HT_Demucs/noise.mp3"></audio></td></tr><tr><th>HT Demucs, streaming</th><td><audio controls preload="none" src="audio/clip_04/HT_Demucs_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/HT_Demucs_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/HT_Demucs_streaming/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN</th><td><audio controls preload="none" src="audio/clip_04/BandIt-BSRNN/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BandIt-BSRNN/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BandIt-BSRNN/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN, streaming</th><td><audio controls preload="none" src="audio/clip_04/BandIt-BSRNN_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BandIt-BSRNN_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BandIt-BSRNN_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact</th><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Compact/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Compact/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Compact/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact, streaming</th><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Compact_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Compact_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Compact_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small</th><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Small/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Small/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Small/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small, streaming</th><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Small_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Small_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Small_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny</th><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Tiny/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Tiny/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Tiny/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny, streaming</th><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Tiny_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Tiny_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_04/BS-RoFormer_Tiny_streaming/noise.mp3"></audio></td></tr>
+          </tbody>
+        </table></div>
+      </section>
+      <section class="clip" id="clip_05">
+        <div class="clip-header">
+          <div>
+            <h2>Excerpt 5</h2>
+            <p>Separated estimates for vocals, accompaniment, and noise.</p>
+          </div>
+          <a class="anchor" href="#clip_05" aria-label="Link to this excerpt">#</a>
+        </div>
+
+        <div class="mix-row">
+          <strong>Original mixture</strong>
+          <audio controls preload="none" src="audio/clip_05/mixture.mp3"></audio>
+        </div>
+
+        <h3>Model outputs</h3>
+        <div class="table-wrap"><table>
+          <thead>
+            <tr><th>Model</th><th>Vocals</th><th>Accompaniment</th><th>Noise</th></tr>
+          </thead>
+          <tbody>
+            <tr class="proposed"><th>GIDS-FLOW</th><td><audio controls preload="none" src="audio/clip_05/GIDS-FLOW/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/GIDS-FLOW/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/GIDS-FLOW/noise.mp3"></audio></td></tr><tr><th>DTTNet</th><td><audio controls preload="none" src="audio/clip_05/DTTNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/DTTNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/DTTNet/noise.mp3"></audio></td></tr><tr><th>DTTNet, streaming</th><td><audio controls preload="none" src="audio/clip_05/DTTNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/DTTNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/DTTNet_streaming/noise.mp3"></audio></td></tr><tr><th>SCNet</th><td><audio controls preload="none" src="audio/clip_05/SCNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/SCNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/SCNet/noise.mp3"></audio></td></tr><tr><th>SCNet, streaming</th><td><audio controls preload="none" src="audio/clip_05/SCNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/SCNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/SCNet_streaming/noise.mp3"></audio></td></tr><tr><th>TFC-TDF-UNet v3</th><td><audio controls preload="none" src="audio/clip_05/TFC-TDF-UNet_v3/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/TFC-TDF-UNet_v3/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/TFC-TDF-UNet_v3/noise.mp3"></audio></td></tr><tr><th>Causal TFC-TDF-UNet v3, streaming</th><td><audio controls preload="none" src="audio/clip_05/Causal_TFC-TDF-UNet_v3_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/Causal_TFC-TDF-UNet_v3_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/Causal_TFC-TDF-UNet_v3_streaming/noise.mp3"></audio></td></tr><tr><th>HT Demucs</th><td><audio controls preload="none" src="audio/clip_05/HT_Demucs/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/HT_Demucs/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/HT_Demucs/noise.mp3"></audio></td></tr><tr><th>HT Demucs, streaming</th><td><audio controls preload="none" src="audio/clip_05/HT_Demucs_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/HT_Demucs_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/HT_Demucs_streaming/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN</th><td><audio controls preload="none" src="audio/clip_05/BandIt-BSRNN/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BandIt-BSRNN/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BandIt-BSRNN/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN, streaming</th><td><audio controls preload="none" src="audio/clip_05/BandIt-BSRNN_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BandIt-BSRNN_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BandIt-BSRNN_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact</th><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Compact/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Compact/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Compact/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact, streaming</th><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Compact_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Compact_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Compact_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small</th><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Small/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Small/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Small/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small, streaming</th><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Small_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Small_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Small_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny</th><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Tiny/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Tiny/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Tiny/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny, streaming</th><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Tiny_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Tiny_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_05/BS-RoFormer_Tiny_streaming/noise.mp3"></audio></td></tr>
+          </tbody>
+        </table></div>
+      </section>
+      <section class="clip" id="clip_06">
+        <div class="clip-header">
+          <div>
+            <h2>Excerpt 6</h2>
+            <p>Separated estimates for vocals, accompaniment, and noise.</p>
+          </div>
+          <a class="anchor" href="#clip_06" aria-label="Link to this excerpt">#</a>
+        </div>
+
+        <div class="mix-row">
+          <strong>Original mixture</strong>
+          <audio controls preload="none" src="audio/clip_06/mixture.mp3"></audio>
+        </div>
+
+        <h3>Model outputs</h3>
+        <div class="table-wrap"><table>
+          <thead>
+            <tr><th>Model</th><th>Vocals</th><th>Accompaniment</th><th>Noise</th></tr>
+          </thead>
+          <tbody>
+            <tr class="proposed"><th>GIDS-FLOW</th><td><audio controls preload="none" src="audio/clip_06/GIDS-FLOW/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/GIDS-FLOW/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/GIDS-FLOW/noise.mp3"></audio></td></tr><tr><th>DTTNet</th><td><audio controls preload="none" src="audio/clip_06/DTTNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/DTTNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/DTTNet/noise.mp3"></audio></td></tr><tr><th>DTTNet, streaming</th><td><audio controls preload="none" src="audio/clip_06/DTTNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/DTTNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/DTTNet_streaming/noise.mp3"></audio></td></tr><tr><th>SCNet</th><td><audio controls preload="none" src="audio/clip_06/SCNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/SCNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/SCNet/noise.mp3"></audio></td></tr><tr><th>SCNet, streaming</th><td><audio controls preload="none" src="audio/clip_06/SCNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/SCNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/SCNet_streaming/noise.mp3"></audio></td></tr><tr><th>TFC-TDF-UNet v3</th><td><audio controls preload="none" src="audio/clip_06/TFC-TDF-UNet_v3/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/TFC-TDF-UNet_v3/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/TFC-TDF-UNet_v3/noise.mp3"></audio></td></tr><tr><th>Causal TFC-TDF-UNet v3, streaming</th><td><audio controls preload="none" src="audio/clip_06/Causal_TFC-TDF-UNet_v3_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/Causal_TFC-TDF-UNet_v3_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/Causal_TFC-TDF-UNet_v3_streaming/noise.mp3"></audio></td></tr><tr><th>HT Demucs</th><td><audio controls preload="none" src="audio/clip_06/HT_Demucs/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/HT_Demucs/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/HT_Demucs/noise.mp3"></audio></td></tr><tr><th>HT Demucs, streaming</th><td><audio controls preload="none" src="audio/clip_06/HT_Demucs_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/HT_Demucs_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/HT_Demucs_streaming/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN</th><td><audio controls preload="none" src="audio/clip_06/BandIt-BSRNN/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BandIt-BSRNN/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BandIt-BSRNN/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN, streaming</th><td><audio controls preload="none" src="audio/clip_06/BandIt-BSRNN_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BandIt-BSRNN_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BandIt-BSRNN_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact</th><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Compact/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Compact/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Compact/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact, streaming</th><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Compact_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Compact_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Compact_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small</th><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Small/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Small/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Small/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small, streaming</th><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Small_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Small_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Small_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny</th><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Tiny/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Tiny/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Tiny/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny, streaming</th><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Tiny_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Tiny_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_06/BS-RoFormer_Tiny_streaming/noise.mp3"></audio></td></tr>
+          </tbody>
+        </table></div>
+      </section>
+      <section class="clip" id="clip_07">
+        <div class="clip-header">
+          <div>
+            <h2>Excerpt 7</h2>
+            <p>Separated estimates for vocals, accompaniment, and noise.</p>
+          </div>
+          <a class="anchor" href="#clip_07" aria-label="Link to this excerpt">#</a>
+        </div>
+
+        <div class="mix-row">
+          <strong>Original mixture</strong>
+          <audio controls preload="none" src="audio/clip_07/mixture.mp3"></audio>
+        </div>
+
+        <h3>Model outputs</h3>
+        <div class="table-wrap"><table>
+          <thead>
+            <tr><th>Model</th><th>Vocals</th><th>Accompaniment</th><th>Noise</th></tr>
+          </thead>
+          <tbody>
+            <tr class="proposed"><th>GIDS-FLOW</th><td><audio controls preload="none" src="audio/clip_07/GIDS-FLOW/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/GIDS-FLOW/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/GIDS-FLOW/noise.mp3"></audio></td></tr><tr><th>DTTNet</th><td><audio controls preload="none" src="audio/clip_07/DTTNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/DTTNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/DTTNet/noise.mp3"></audio></td></tr><tr><th>DTTNet, streaming</th><td><audio controls preload="none" src="audio/clip_07/DTTNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/DTTNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/DTTNet_streaming/noise.mp3"></audio></td></tr><tr><th>SCNet</th><td><audio controls preload="none" src="audio/clip_07/SCNet/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/SCNet/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/SCNet/noise.mp3"></audio></td></tr><tr><th>SCNet, streaming</th><td><audio controls preload="none" src="audio/clip_07/SCNet_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/SCNet_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/SCNet_streaming/noise.mp3"></audio></td></tr><tr><th>TFC-TDF-UNet v3</th><td><audio controls preload="none" src="audio/clip_07/TFC-TDF-UNet_v3/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/TFC-TDF-UNet_v3/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/TFC-TDF-UNet_v3/noise.mp3"></audio></td></tr><tr><th>Causal TFC-TDF-UNet v3, streaming</th><td><audio controls preload="none" src="audio/clip_07/Causal_TFC-TDF-UNet_v3_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/Causal_TFC-TDF-UNet_v3_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/Causal_TFC-TDF-UNet_v3_streaming/noise.mp3"></audio></td></tr><tr><th>HT Demucs</th><td><audio controls preload="none" src="audio/clip_07/HT_Demucs/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/HT_Demucs/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/HT_Demucs/noise.mp3"></audio></td></tr><tr><th>HT Demucs, streaming</th><td><audio controls preload="none" src="audio/clip_07/HT_Demucs_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/HT_Demucs_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/HT_Demucs_streaming/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN</th><td><audio controls preload="none" src="audio/clip_07/BandIt-BSRNN/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BandIt-BSRNN/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BandIt-BSRNN/noise.mp3"></audio></td></tr><tr><th>BandIt-BSRNN, streaming</th><td><audio controls preload="none" src="audio/clip_07/BandIt-BSRNN_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BandIt-BSRNN_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BandIt-BSRNN_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact</th><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Compact/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Compact/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Compact/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Compact, streaming</th><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Compact_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Compact_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Compact_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small</th><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Small/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Small/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Small/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Small, streaming</th><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Small_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Small_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Small_streaming/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny</th><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Tiny/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Tiny/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Tiny/noise.mp3"></audio></td></tr><tr><th>BS-RoFormer Tiny, streaming</th><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Tiny_streaming/vocals.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Tiny_streaming/acc.mp3"></audio></td><td><audio controls preload="none" src="audio/clip_07/BS-RoFormer_Tiny_streaming/noise.mp3"></audio></td></tr>
+          </tbody>
+        </table></div>
+      </section>
+  </main>
+</body>
+</html>
+
